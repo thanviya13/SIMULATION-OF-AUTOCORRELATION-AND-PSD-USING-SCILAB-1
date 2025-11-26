@@ -46,7 +46,46 @@ If any Error, correct it in code and execute again
 Verify the generated waveform using Tabulation and Model Waveform 
 
 __PROGRAM:__
+```
+clc;
+clear all;
+close;
 
+t = 0:0.01:%pi*2;
+x = sin(2*t);
+
+
+subplot(3,2,1);
+plot(t, x);
+title('Original Signal');
+
+au = xcorr(x, x);
+subplot(3,2,2);
+plot(au);
+title('Autocorrelation');
+
+
+v = fft(au);
+subplot(3,2,3);
+plot(abs(v));
+title('FFT of Autocorrelation');
+
+
+fw = fft(x);
+subplot(3,2,4);
+plot(abs(fw));
+title('FFT of Original Signal');
+
+
+fw2 = (abs(fw)).^2;
+subplot(3,2,5);
+plot(fw2);
+title('Power Spectrum');
+```
 __OUTPUT:__
 
+<img width="875" height="464" alt="image" src="https://github.com/user-attachments/assets/096ce37c-feb4-40f5-a5be-17f30a97d009" />
+
 __RESULT:__
+
+<img width="894" height="442" alt="image" src="https://github.com/user-attachments/assets/600b5135-6d2a-448d-b0de-1d3390a473ab" />
